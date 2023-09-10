@@ -25,6 +25,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     Boolean elevator_pid_enable = true;
     public Boolean stay_pid_control = false;
     double pid_setpoint = 0;
+    public static boolean too_high = false;
     
     
     private TalonFxMotorPIDmodule elevatorl = new TalonFxMotorPIDmodule(PortID.elevator_elongation_l_falcon500, NeutralMode.Brake, FeedbackDevice.IntegratedSensor);
@@ -71,13 +72,15 @@ public class ElevatorSubsystem extends SubsystemBase {
         // elevator_pid_enable = SmartDashboard.getBoolean("elevator_pid_enable", false);
 
         if(elevator_close_limitSwitch.get()){
-            elevatorr.reset_current_position(0);
-            elevatorl.reset_current_position(0);
+            // elevatorr.reset_current_position(0);
+            // elevatorl.reset_current_position(0);
         }
         if(elevator_open_limitSwitch.get()){
             elevatorr.reset_current_position(-Constants.elevator_open);
             elevatorl.reset_current_position(Constants.elevator_open);
         }
+
+        too_high = elevator_get_height() < -1.2;
 
         // if (elevator_pid_enable) {
         //     // Calculates the output of the PID algorithm based on the sensor reading

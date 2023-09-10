@@ -75,29 +75,32 @@ public class blue_left_no_balance extends PathPlannerModule {
         addCommands(new InstantCommand(() -> swerve.zeroHeading()),
                 new InstantCommand(() -> swerve.gyro_pitch_offset = 180), 
                 new InstantCommand(() -> swerve.resetOdometry(traj1.getInitialHolonomicPose())),
-                Put_up_con.withTimeout(1.5),
-                new InstantCommand(() -> this.intake.putCon()).withTimeout(2),
-                reset.withTimeout(2.5),
-                new InstantCommand(() -> this.intake.suckStop()),
-                autoDrive1,
-                AimCube.withTimeout(2),
-                new InstantCommand(() -> this.intake.eatCube()),
-                new RunCommand(() -> {
-                        if (this.intake.getLiftPosition() > 2500)
-                                this.intake.lift.setPercentOutput(0.1);
-                        else if (this.intake.getLiftPosition() > 1000)
-                                this.intake.lift.setPercentOutput(-0.3);
-                        else
-                                this.intake.lift.setPercentOutput(-0.95);
-                }).withTimeout(2),
-                reset2.withTimeout(1),
-                autoDrive2,
-                AimAprilTag.withTimeout(2),
-                new RunCommand(() -> {
-                        this.intake.set_lift_position(intake_position.intake_straight);
-                }).withTimeout(1),
-                new InstantCommand(() -> this.intake.putCube()).withTimeout(1.5),
-                reset3.withTimeout(1),
+                // Put_up_con.withTimeout(3.5),
+                // new InstantCommand(() -> this.intake.set_lift_position(intake_position.intake_straight_con)).withTimeout(1.5),
+                // // new InstantCommand(() -> this.intake.suckStop()).withTimeout(1.5),
+                // new InstantCommand(() -> this.intake.putCube()).withTimeout(4),
+                // reset.withTimeout(4),
+                // // new InstantCommand(() -> this.intake.suckStop()).withTimeout(1.5),
+                // new InstantCommand(() -> this.intake.suckStop()),
+                // autoDrive1.withTimeout(2.3),
+                // AimCube.withTimeout(2),
+                // new InstantCommand(() -> this.intake.eatCube()),
+                // new RunCommand(() -> {
+                //         if (this.intake.getLiftPosition() > 2500)
+                //                 this.intake.lift.setPercentOutput(0.1);
+                //         else if (this.intake.getLiftPosition() > 1000)
+                //                 this.intake.lift.setPercentOutput(-0.3);
+                //         else
+                //                 this.intake.lift.setPercentOutput(-0.95);
+                // }).withTimeout(2),
+                // reset2.withTimeout(1),
+                // autoDrive2,
+                // AimAprilTag.withTimeout(2),
+                // new RunCommand(() -> {
+                //         this.intake.set_lit_position(intake_position.intake_straight);
+                // }).withTimeout(1),
+                // new InstantCommand(() -> this.intake.putCube()).withTimeout(1.5),
+                // reset3.withTimeout(1),
                 // autoDrive3.alongWith(reset3.withTimeout(2)),
                 new InstantCommand(() -> swerve.stopModules()));
     }

@@ -94,7 +94,7 @@ public class autoPut extends CommandBase {
         if (Mode == putMode.upper_con) {
             elevator.elevator_up();
             rack.rack_open();
-            // intake.set_lift_straight();x
+            
             if (elevator.elevator_up() && rack.rack_open()) {
                 intake.set_lift_position(intake_position.intake_straight_con);
             }
@@ -102,6 +102,7 @@ public class autoPut extends CommandBase {
         if (Mode == putMode.reset) {
             intake.set_lift_position(intake_position.intake_origin);
             rack.rack_close();
+            elevator.elevator_down();
             if (intake.getLiftPosition()<150 && rack.rack_close() && elevator.elevator_down()) {
                 rack.rack_stay_close();
                 elevator.elevator_down();

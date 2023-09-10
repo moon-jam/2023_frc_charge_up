@@ -174,7 +174,7 @@ public class RobotContainer {
                 () -> -driverJoystick.getRawAxis(OIConstants.kDriverYAxis),
                 () -> driverJoystick.getRawAxis(OIConstants.kDriverXAxis),
                 () -> driverJoystick.getRawButton(9)? 0 : driverJoystick.getRawAxis(OIConstants.kDriverRotAxis),
-                () -> driverJoystick.getRawAxis(OIConstants.kDriverSpeedAxis),
+                () -> ElevatorSubsystem.too_high ? 0.3: driverJoystick.getRawAxis(OIConstants.kDriverSpeedAxis),
                 () -> copilotJoystick.getRawAxis(XboxController.Axis.kLeftTrigger.value),
                 () -> copilotJoystick.getRawAxis(XboxController.Axis.kRightTrigger.value),
                 () -> !driverJoystick.getRawButton(OIConstants.kDriverFieldOrientedButtonIdx),
